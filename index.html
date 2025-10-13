@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A Liderança que Transforma Água em Vinho - O Código da Excelência Silenciosa">
+    <meta name="author" content="Leadership Excellence">
+    <title>A Liderança que Transforma Água em Vinho</title>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #202124;
+        line-height: 1.6;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        overflow: hidden;
+    }
+
+    .hero {
+        background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+        color: white;
+        padding: 60px 40px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '⚜️';
+        font-size: 120px;
+        position: absolute;
+        top: -20px;
+        right: 40px;
+        opacity: 0.1;
+    }
+
+    .hero h1 {
+        font-family: 'Google Sans', sans-serif;
+        font-size: 2.5em;
+        font-weight: 700;
+        margin-bottom: 15px;
+        line-height: 1.2;
+    }
+
+    .hero .subtitle {
+        font-size: 1.3em;
+        font-weight: 300;
+        opacity: 0.95;
+    }
+
+    .content {
+        padding: 40px;
+    }
+
+    .section {
+        margin-bottom: 50px;
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .card {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 25px;
+        border-left: 5px solid #1a73e8;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    .card.red { border-left-color: #ea4335; }
+    .card.yellow { border-left-color: #fbbc04; }
+    .card.green { border-left-color: #34a853; }
+    .card.purple { border-left-color: #9334e6; }
+    .card.orange { border-left-color: #ff6d00; }
+
+    .card h2 {
+        font-family: 'Google Sans', sans-serif;
+        color: #1a73e8;
+        font-size: 1.8em;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .card.red h2 { color: #ea4335; }
+    .card.yellow h2 { color: #ea8600; }
+    .card.green h2 { color: #34a853; }
+    .card.purple h2 { color: #9334e6; }
+    .card.orange h2 { color: #ff6d00; }
+
+    .number-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, #1a73e8, #4285f4);
+        color: white;
+        border-radius: 50%;
+        font-weight: 700;
+        font-size: 1.3em;
+        flex-shrink: 0;
+    }
+
+    .card.red .number-badge { background: linear-gradient(135deg, #ea4335, #f55f4e); }
+    .card.yellow .number-badge { background: linear-gradient(135deg, #fbbc04, #fcd34d); }
+    .card.green .number-badge { background: linear-gradient(135deg, #34a853, #5bb974); }
+    .card.purple .number-badge { background: linear-gradient(135deg, #9334e6, #a855f7); }
+    .card.orange .number-badge { background: linear-gradient(135deg, #ff6d00, #ff8a3d); }
+
+    .card p {
+        font-size: 1.05em;
+        color: #5f6368;
+        margin-bottom: 15px;
+        line-height: 1.8;
+    }
+
+    .highlight {
+        background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+        padding: 20px 25px;
+        border-radius: 8px;
+        font-weight: 500;
+        color: #1a1a1a;
+        margin: 20px 0;
+        font-size: 1.1em;
+        border-left: 4px solid #1a73e8;
+    }
+
+    .table-container {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        margin: 30px 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: linear-gradient(135deg, #1a73e8, #4285f4);
+        color: white;
+    }
+
+    th {
+        font-family: 'Google Sans', sans-serif;
+        padding: 20px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 1.1em;
+    }
+
+    td {
+        padding: 20px;
+        border-bottom: 1px solid #e8eaed;
+    }
+
+    tr:hover {
+        background: #f8f9fa;
+    }
+
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .principle {
+        font-weight: 600;
+        color: #1a73e8;
+        font-size: 1.05em;
+    }
+
+    .practice {
+        color: #5f6368;
+        font-size: 1em;
+    }
+
+    .conclusion {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 50px 40px;
+        border-radius: 12px;
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .conclusion h2 {
+        font-family: 'Google Sans', sans-serif;
+        font-size: 2.2em;
+        margin-bottom: 25px;
+    }
+
+    .conclusion p {
+        font-size: 1.2em;
+        line-height: 1.9;
+        margin-bottom: 15px;
+        font-weight: 300;
+    }
+
+    .conclusion .final-quote {
+        font-size: 1.5em;
+        font-weight: 500;
+        margin-top: 30px;
+        padding: 20px;
+        background: rgba(255,255,255,0.15);
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+    }
+
+    .divider {
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #e8eaed, transparent);
+        margin: 40px 0;
+    }
+
+    @media (max-width: 768px) {
+        .hero {
+            padding: 40px 20px;
+        }
+
+        .hero h1 {
+            font-size: 1.8em;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .card {
+            padding: 20px;
+        }
+
+        table {
+            font-size: 0.9em;
+        }
+
+        th, td {
+            padding: 12px;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>⚜️ A Liderança que Transforma Água em Vinho</h1>
+            <p class="subtitle">O Código da Excelência Silenciosa</p>
+        </div>
+
+```
+    <div class="content">
+        <div class="section">
+            <div class="card">
+                <h2><span class="number-badge">1</span>A grandeza começa no comum</h2>
+                <p>Os líderes verdadeiramente transformadores não esperam momentos grandiosos para agir. Eles criam grandeza no cotidiano, nas interações simples, nas reuniões discretas, nos detalhes.</p>
+                <div class="highlight">
+                    Liderar é ver potência onde outros veem rotina. É tratar o ordinário como palco do extraordinário.
+                </div>
+                <p>Empresas que constroem legados não dependem de grandes eventos — dependem de líderes que enxergam cada processo, cada pessoa e cada cliente como um universo de possibilidades.</p>
+            </div>
+
+            <div class="card red">
+                <h2><span class="number-badge">2</span>Crises são convites para protagonismo</h2>
+                <p>Em toda organização há momentos em que o "vinho acaba": falta de motivação, queda de desempenho, perda de propósito ou de clientes. Enquanto a maioria se desespera, líderes de excelência identificam o vazio e agem com serenidade.</p>
+                <div class="highlight">
+                    Eles não reclamam da escassez — eles a convertem em oportunidade.
+                </div>
+                <p>A diferença entre o gestor e o líder é que o primeiro reage, o segundo antecipa. Ele sente o desequilíbrio do sistema e o reequilibra com visão, comunicação e presença.</p>
+            </div>
+
+            <div class="card yellow">
+                <h2><span class="number-badge">3</span>A disciplina do tempo</h2>
+                <p>O líder maduro não é movido por ansiedade ou urgência — é guiado por propósito e timing. Sabe que agir antes da hora pode ser tão desastroso quanto agir tarde demais.</p>
+                <div class="highlight">
+                    O poder não está apenas em saber o que fazer, mas quando fazer.
+                </div>
+                <p>Ele domina o tempo interno e o tempo da equipe: fala quando é necessário, cala quando é estratégico, acelera quando há sinergia e desacelera quando há confusão.</p>
+            </div>
+
+            <div class="card green">
+                <h2><span class="number-badge">4</span>A força da execução silenciosa</h2>
+                <p>O maior segredo da liderança está no bastidor: a execução impecável de instruções simples. O que separa equipes medianas de times lendários não é genialidade — é disciplina cotidiana.</p>
+                <div class="highlight">
+                    A excelência não é um ato heroico. É o resultado de uma fidelidade absurda ao básico bem feito.
+                </div>
+                <p>Líderes que mudam o jogo não delegam apenas tarefas, delegam sentido. Eles inspiram outros a obedecer não por hierarquia, mas por confiança no propósito.</p>
+            </div>
+
+            <div class="card purple">
+                <h2><span class="number-badge">5</span>O poder de surpreender</h2>
+                <p>A verdadeira transformação acontece quando o resultado final é melhor do que o esperado. Enquanto muitos buscam "cumprir metas", o líder de excelência busca elevar o padrão.</p>
+                <div class="highlight">
+                    Ele não entrega apenas o suficiente — entrega o inédito.
+                </div>
+                <p>Surpreender é a arte de combinar domínio técnico, sensibilidade humana e visão estética. Quando o líder entrega algo tão bom que o sistema se silencia por admiração, ele atinge o território da liderança que inspira, não apenas gerencia.</p>
+            </div>
+
+            <div class="card orange">
+                <h2><span class="number-badge">6</span>Legado: inspirar confiança pelo exemplo</h2>
+                <p>A confiança é o oxigênio das organizações. Ela não nasce de discursos, mas de resultados consistentes e presença coerente.</p>
+                <div class="highlight">
+                    O líder de excelência não pede confiança — ele a conquista. Ele transforma performance em fé organizacional.
+                </div>
+                <p>Cada entrega bem feita, cada decisão justa e cada ato de coragem silenciosa solidifica uma cultura em que as pessoas acreditam — não no líder apenas, mas no que se torna possível ao seu redor.</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <h2 style="font-family: 'Google Sans', sans-serif; color: #1a73e8; font-size: 2em; margin-bottom: 30px; text-align: center;">
+                <span class="number-badge" style="margin-right: 15px;">7</span>
+                Síntese: o código da liderança transformadora
+            </h2>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Princípio</th>
+                            <th>Tradução prática</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="principle">1. O comum é palco do extraordinário.</td>
+                            <td class="practice">Dê propósito ao cotidiano.</td>
+                        </tr>
+                        <tr>
+                            <td class="principle">2. Crise é oportunidade disfarçada.</td>
+                            <td class="practice">Aja com calma e protagonismo.</td>
+                        </tr>
+                        <tr>
+                            <td class="principle">3. Tempo é inteligência estratégica.</td>
+                            <td class="practice">Espere o momento certo, não o mais fácil.</td>
+                        </tr>
+                        <tr>
+                            <td class="principle">4. Execução é espiritualidade em ação.</td>
+                            <td class="practice">Faça o simples com excelência.</td>
+                        </tr>
+                        <tr>
+                            <td class="principle">5. Surpreenda o sistema.</td>
+                            <td class="practice">Supere expectativas em silêncio.</td>
+                        </tr>
+                        <tr>
+                            <td class="principle">6. Inspire pela entrega.</td>
+                            <td class="practice">Sua coerência vale mais que sua fala.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h2>A liderança como alquimia</h2>
+            <p>Liderar é transformar o "comum em ouro", o "processo em propósito", o "esforço em arte". É fazer com que cada ação contenha elegância, precisão e significado.</p>
+            <p>O verdadeiro líder não busca reconhecimento — ele busca revelação: revelar o potencial oculto nas pessoas, nos projetos e nas circunstâncias.</p>
+            <div class="final-quote">
+                E quando isso acontece, não há barulho — há impacto.<br>
+                <strong>A excelência fala em silêncio.</strong>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+</body>
+</html>
