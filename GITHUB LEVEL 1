@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guia Visual Didático — GitHub Pro (Anderson Lima)</title>
+<meta name="description" content="Guia visual e prático para dominar Git & GitHub: do zero ao 100%, com diagramas, exemplos e boas práticas." />
+<style>
+  :root{
+    --bg:#0e1116; --panel:#141922; --ink:#e6edf3; --muted:#adbac7;
+    --brand:#2ea043; --acc:#1f6feb; --warn:#ffb454; --danger:#ff6b6b;
+    --border:#263041; --code:#0b1320; --kbd:#0d1526; --shadow:rgba(0,0,0,.3);
+  }
+  html,body{background:var(--bg); color:var(--ink); margin:0; font:16px/1.6 Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji"; }
+  .wrap{max-width:1060px; margin:auto; padding:32px 20px 80px;}
+  header.hero{background:linear-gradient(135deg, #0f1523 0%, #0b1b2d 100%); border:1px solid var(--border); border-radius:16px; box-shadow:0 8px 30px var(--shadow); padding:28px;}
+  h1{margin:0 0 8px; font-size:28px; letter-spacing:.2px}
+  .subtitle{color:var(--muted); margin-top:2px}
+  .badges{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+  .badge{background:#0d1526; color:#a3d3ff; border:1px solid #163055; padding:6px 10px; border-radius:999px; font-size:12px}
+  nav#toc{margin:22px 0 28px; border:1px solid var(--border); border-radius:14px; padding:16px 18px; background:var(--panel)}
+  nav#toc h2{margin:0 0 8px; font-size:18px}
+  nav#toc ol{columns:2; gap:28px; margin:0; padding-left:18px}
+  a{color:#8ab4ff; text-decoration:none}
+  a:hover{text-decoration:underline}
+  section.card{background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:22px; margin:16px 0 22px; box-shadow:0 8px 24px var(--shadow)}
+  section.card h2{margin:0 0 10px; font-size:22px}
+  .lead{color:var(--muted); margin:6px 0 14px}
+  .grid{display:grid; gap:16px}
+  @media(min-width:900px){ .grid.cols-2{grid-template-columns:1fr 1fr} }
+  .pill{display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; border:1px solid var(--border); background:#0d1526; color:#bfe1ff; margin-right:6px}
+  .quote{border-left:3px solid var(--acc); padding-left:12px; color:#cbd5e1}
+  .callout{border:1px dashed #2b3b55; background:#0f1625; border-radius:12px; padding:12px 14px; margin:8px 0}
+  .good{color:#7dffa8}
+  .bad{color:#ff9b9b}
+  .btn-row{display:flex; gap:10px; flex-wrap:wrap; margin:8px 0}
+  button.copy{background:#0c1a2b; border:1px solid #193659; color:#bfe1ff; padding:6px 10px; border-radius:8px; cursor:pointer; font-size:12px}
+  pre{background:var(--code); border:1px solid #0f223a; border-radius:12px; padding:14px; overflow:auto; box-shadow: inset 0 0 0 1px #0b1a30}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,Monaco,monospace; font-size:13px; color:#d2e3ff}
+  kbd{background:var(--kbd); border:1px solid #1b2e4d; padding:2px 6px; border-radius:6px; font-size:12px; color:#bfe1ff}
+  table{width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:12px; border:1px solid var(--border); background:#0c1220}
+  th,td{padding:10px 12px; border-bottom:1px solid #18243b}
+  th{background:#0f1a2d; text-align:left; color:#cfe3ff; position:sticky; top:0}
+  tr:last-child td{border-bottom:none}
+  .tag{font-size:12px; padding:2px 8px; border-radius:999px; border:1px solid #24406b; background:#0d1a32; color:#bfe1ff}
+  footer{color:#8aa0b8; margin-top:48px; text-align:center}
+  .svgbox{background:#0c1220; border:1px solid #17243a; border-radius:12px; padding:10px}
+  .mini{font-size:12px; color:#9fb5d1}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero" id="top">
+  <h1>Guia Visual Didático — GitHub Pro</h1>
+  <div class="subtitle">Por Anderson Lima — “Liderar com propósito é dominar as ferramentas da inovação. Este guia é o mapa para transformar código em legado.”</div>
+  <div class="badges">
+    <span class="badge">A4 Vertical</span>
+    <span class="badge">Índice Interativo</span>
+    <span class="badge">Diagramas (SVG)</span>
+    <span class="badge">Exemplos Reais</span>
+  </div>
+</header>
+
+<nav id="toc" aria-label="Sumário">
+  <h2>Sumário</h2>
+  <ol>
+    <li><a href="#mod1">Fundamentos do Git & GitHub</a></li>
+    <li><a href="#mod2">Branches (ramificações)</a></li>
+    <li><a href="#mod3">Commits e mensagens</a></li>
+    <li><a href="#mod4">Pull Requests (PR) & revisão</a></li>
+    <li><a href="#mod5">Issues (tarefas) & templates</a></li>
+    <li><a href="#mod6">Projects (Kanban/Scrum)</a></li>
+    <li><a href="#mod7">GitHub Actions (CI/CD)</a></li>
+    <li><a href="#mod8">Segurança & Proteções</a></li>
+    <li><a href="#mod9">GitHub Copilot (IA)</a></li>
+    <li><a href="#mod10">Organizações & Governança</a></li>
+    <li><a href="#refs">Referências</a></li>
+  </ol>
+</nav>
+
+<section class="card" id="intro">
+  <h2>Introdução</h2>
+  <p class="lead">Git (versionamento) + GitHub (colaboração na nuvem) formam a espinha dorsal da engenharia moderna: histórico completo, trabalho paralelo, automação e governança.</p>
+  <div class="grid cols-2">
+    <div>
+      <span class="pill">Mentalidade</span>
+      <div class="quote">Commits contam histórias. PRs são diálogos. Pipelines são a disciplina. Proteções viram cultura.</div>
+      <div class="callout"><b>Resultados</b>: previsibilidade, velocidade segura, rastreabilidade e aprendizado contínuo.</div>
+    </div>
+    <div class="svgbox" aria-label="Fluxo alto nível">
+      <!-- Diagrama alto nível -->
+      <svg viewBox="0 0 680 180" width="100%" role="img">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1">
+            <stop offset="0%" stop-color="#1f6feb"/>
+            <stop offset="100%" stop-color="#2ea043"/>
+          </linearGradient>
+        </defs>
+        <rect x="10" y="10" width="660" height="160" rx="12" fill="#0a1220" stroke="#1a2a48"/>
+        <g font-family="Inter" font-size="12" fill="#cfe3ff">
+          <rect x="30" y="55" width="120" height="70" rx="10" fill="#13213a" stroke="#2b3f66"/>
+          <text x="40" y="85">DEV Local</text><text x="40" y="102">git add/commit</text>
+          <rect x="200" y="55" width="130" height="70" rx="10" fill="#13213a" stroke="#2b3f66"/>
+          <text x="210" y="85">GitHub (origin)</text><text x="210" y="102">push/pull</text>
+          <rect x="380" y="55" width="120" height="70" rx="10" fill="#13213a" stroke="#2b3f66"/>
+          <text x="390" y="85">Pull Request</text><text x="390" y="102">review/merge</text>
+          <rect x="540" y="55" width="100" height="70" rx="10" fill="#13213a" stroke="#2b3f66"/>
+          <text x="555" y="85">Actions</text><text x="548" y="102">build/test/deploy</text>
+          <path d="M150 90 L200 90" stroke="url(#g1)" stroke-width="3"/>
+          <path d="M330 90 L380 90" stroke="url(#g1)" stroke-width="3"/>
+          <path d="M500 90 L540 90" stroke="url(#g1)" stroke-width="3"/>
+        </g>
+      </svg>
+      <div class="mini">Fluxo macro: commits → push → PR → Actions (CI/CD).</div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULO 1 -->
+<section class="card" id="mod1">
+  <h2>1) Fundamentos do Git & GitHub</h2>
+  <p class="lead">Git controla versões; GitHub conecta pessoas, automações e governança.</p>
+
+  <div class="grid cols-2">
+    <div>
+      <h3>Setup inicial</h3>
+      <div class="btn-row"><button class="copy" data-target="c1">copiar</button></div>
+      <pre id="c1"><code># Instalação: https://git-scm.com
+git config --global user.name "Seu Nome"
+git config --global user.email "seuemail@exemplo.com"
+git config --global init.defaultBranch main
+git --version</code></pre>
+
+      <h3>Comandos essenciais</h3>
+      <table>
+        <thead><tr><th>Comando</th><th>Para quê</th><th>Nota</th></tr></thead>
+        <tbody>
+          <tr><td><code>git init</code></td><td>Iniciar repositório</td><td><span class="tag">primeiro passo</span></td></tr>
+          <tr><td><code>git add .</code></td><td>Preparar mudanças</td><td>staging</td></tr>
+          <tr><td><code>git commit -m "msg"</code></td><td>Criar checkpoint</td><td>histórico</td></tr>
+          <tr><td><code>git log --oneline --graph</code></td><td>Ver histórico</td><td>visual</td></tr>
+          <tr><td><code>git remote add origin URL</code></td><td>Vincular ao GitHub</td><td>origin</td></tr>
+          <tr><td><code>git push -u origin main</code></td><td>Enviar 1ª vez</td><td>rastreia branch</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <h3>Fluxo local → remoto</h3>
+      <div class="svgbox">
+        <svg viewBox="0 0 680 200" width="100%" role="img" aria-label="Fluxo local-remoto">
+          <rect x="10" y="10" width="660" height="180" rx="12" fill="#0a1220" stroke="#1a2a48"/>
+          <g font-family="Inter" font-size="12" fill="#cfe3ff">
+            <rect x="30" y="60" width="150" height="80" rx="10" fill="#14233d" stroke="#25406d"/>
+            <text x="45" y="97">Repositório Local</text>
+            <rect x="240" y="60" width="190" height="80" rx="10" fill="#14233d" stroke="#25406d"/>
+            <text x="260" y="97">Staging &amp; Commits</text>
+            <rect x="480" y="60" width="160" height="80" rx="10" fill="#14233d" stroke="#25406d"/>
+            <text x="500" y="97">GitHub (origin)</text>
+            <path d="M180 100 L240 100" stroke="#1f6feb" stroke-width="3"/>
+            <path d="M430 100 L480 100" stroke="#2ea043" stroke-width="3"/>
+            <text x="190" y="90" fill="#8ab4ff">add</text>
+            <text x="285" y="90" fill="#8ab4ff">commit</text>
+            <text x="440" y="90" fill="#7dffa8">push</text>
+            <text x="435" y="125" fill="#ffb454">pull</text>
+            <path d="M480 120 L430 120" stroke="#ffb454" stroke-width="2" stroke-dasharray="6 4"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="callout">
+        <b>Boas práticas</b>: commits pequenos, mensagens claras; <b>Erros comuns</b>: usar <code>git add .</code> sem revisar, esquecer <code>.gitignore</code>.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULO 2 -->
+<section class="card" id="mod2">
+  <h2>2) Branches (ramificações)</h2>
+  <p class="lead">Trabalhe em paralelo sem quebrar a linha principal (<i>main</i>).</p>
+  <div class="grid cols-2">
+    <div>
+      <h3>Fluxo de trabalho</h3>
+      <div class="btn-row"><button class="copy" data-target="c2">copiar</button></div>
+      <pre id="c2"><code># criar e trocar para uma branch de feature
+git checkout -b feature/novo-login
+
+# trabalhar, testar e comitar
+git add src/
+git commit -m "feat(login): fluxo básico com validação"
+
+# enviar para o GitHub
+git push -u origin feature/novo-login
+
+# abrir PR no GitHub para revisar e mesclar (merge) na main</code></pre>
+
+      <h3>Nomeação recomendada</h3>
+      <table>
+        <thead><tr><th>Padrão</th><th>Exemplo</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td><code>feature/</code></td><td><code>feature/pagamento-pix</code></td><td>novas capacidades</td></tr>
+          <tr><td><code>fix/</code></td><td><code>fix/corrige-timeout</code></td><td>bugs</td></tr>
+          <tr><td><code>hotfix/</code></td><td><code>hotfix/cupom-critico</code></td><td>urgente em produção</td></tr>
+          <tr><td><code>chore/</code></td><td><code>chore/atualiza-deps</code></td><td>rotina/manutenção</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3>Diagrama — Git Flow simplificado</h3>
+      <div class="svgbox">
+        <svg viewBox="0 0 680 240" width="100%" role="img" aria-label="Git Flow">
+          <rect x="10" y="10" width="660" height="220" rx="12" fill="#0a1220" stroke="#1a2a48"/>
+          <g font-family="Inter" font-size="12" fill="#cfe3ff">
+            <rect x="40" y="60" width="140" height="40" rx="10" fill="#143255" stroke="#255b9b"/>
+            <text x="90" y="85" text-anchor="middle">main</text>
+            <rect x="240" y="60" width="160" height="40" rx="10" fill="#143255" stroke="#255b9b"/>
+            <text x="320" y="85" text-anchor="middle">develop</text>
+            <rect x="200" y="130" width="180" height="34" rx="8" fill="#1d3b0f" stroke="#2ea043"/>
+            <text x="290" y="150" text-anchor="middle">feature/novo-login</text>
+            <rect x="430" y="60" width="160" height="40" rx="10" fill="#5a1717" stroke="#c64a4a"/>
+            <text x="510" y="85" text-anchor="middle">hotfix/cupom</text>
+            <path d="M180 80 L240 80" stroke="#8ab4ff" stroke-width="3"/>
+            <path d="M380 80 L430 80" stroke="#8ab4ff" stroke-width="3"/>
+            <path d="M290 130 L290 94" stroke="#7dffa8" stroke-width="3"/>
+            <path d="M510 100 L510 120 L320 120" stroke="#ff9b9b" stroke-width="3"/>
+            <text x="200" y="100" fill="#7dffa8">merge</text>
+            <text x="450" y="110" fill="#ff9b9b">hotfix → main</text>
+          </g>
+        </svg>
+      </div>
+      <div class="callout">
+        <b>Evite</b>: branches gigantes. <b>Prefira</b>: ciclos curtos + PRs pequenos e frequentes.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULO 3 -->
+<section class="card" id="mod3">
+  <h2>3) Commits e mensagens</h2>
+  <p class="lead">Mensagem boa = contexto + escopo + intenção. Ajuda revisão e auditoria.</p>
+  <div class="grid cols-2">
+    <div>
+      <h3>Padrão (Conventional Commits)</h3>
+      <table>
+        <thead><tr><th>Tipo</th><th>Exemplo</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td><code>feat:</code></td><td>feat(login): fluxo com OAuth</td><td>nova feature</td></tr>
+          <tr><td><code>fix:</code></td><td>fix(api): corrige CORS</td><td>bug fix</td></tr>
+          <tr><td><code>docs:</code></td><td>docs: melhora README</td><td>documentação</td></tr>
+          <tr><td><code>chore:</code></td><td>chore: atualiza deps</td><td>rotina</td></tr>
+          <tr><td><code>refactor:</code></td><td>refactor(core): simplifica</td><td>refatoração</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3>Boas práticas × Erros comuns</h3>
+      <table>
+        <thead><tr><th class="good">Fazer</th><th class="bad">Evitar</th></tr></thead>
+        <tbody>
+          <tr><td>Commits pequenos e atômicos</td><td>“mega-commit” com tudo</td></tr>
+          <tr><td>Mensagens com porquê/impacto</td><td>“update stuff”, “ajustes”</td></tr>
+          <tr><td>Referenciar issue/PR (#123)</td><td>Sem contexto de tarefa</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3>Exemplos</h3>
+  <div class="btn-row"><button class="copy" data-target="c3">copiar</button></div>
+  <pre id="c3"><code># bom
+git commit -m "feat(checkout): adiciona suporte a PIX (#231) — reduz abandono em 12%"
+
+# ruim
+git commit -m "ajustes gerais"</code></pre>
+</section>
+
+<!-- MÓDULO 4 -->
+<section class="card" id="mod4">
+  <h2>4) Pull Requests (PR) & Revisão</h2>
+  <p class="lead">O PR é onde a equipe conversa sobre código, garante qualidade e aciona automações.</p>
+  <div class="grid cols-2">
+    <div>
+      <h3>Checklist de um PR sólido</h3>
+      <ul>
+        <li>Escopo claro + descrição do porquê</li>
+        <li>Capturas/links de teste quando visual</li>
+        <li>Commits limpos (squash se preciso)</li>
+        <li>Checks do CI verdes (Actions)</li>
+        <li>Rótulos (labels) e referência a issues</li>
+      </ul>
+      <div class="btn-row"><button class="copy" data-target="c4">copiar</button></div>
+      <pre id="c4"><code># branches atualizadas antes do PR
+git fetch origin
+git rebase origin/main
+
+# abrir PR pelo GitHub; em caso de conflito:
+git merge origin/main
+# ou resolva e finalize pelo editor/IDE</code></pre>
+    </div>
+    <div>
+      <h3>Diagrama — PR → Review → Merge</h3>
+      <div class="svgbox">
+        <svg viewBox="0 0 680 220" width="100%" role="img">
+          <rect x="10" y="10" width="660" height="200" rx="12" fill="#0a1220" stroke="#1a2a48"/>
+          <g font-family="Inter" font-size="12" fill="#cfe3ff">
+            <rect x="40" y="60" width="180" height="40" rx="10" fill="#14233d" stroke="#25406d"/>
+            <text x="130" y="85" text-anchor="middle">feature/novo-login</text>
+            <rect x="260" y="60" width="140" height="40" rx="10" fill="#14233d" stroke="#25406d"/>
+            <text x="330" y="85" text-anchor="middle">PR aberto</text>
+            <rect x="440" y="60" width="180" height="40" rx="10" fill="#14233d" stroke="#25406d"/>
+            <text x="530" y="85" text-anchor="middle">Review + Checks</text>
+            <rect x="260" y="130" width="140" height="36" rx="10" fill="#1d3b0f" stroke="#2ea043"/>
+            <text x="330" y="152" text-anchor="middle">merge → main</text>
+            <path d="M220 80 L260 80" stroke="#8ab4ff" stroke-width="3"/>
+            <path d="M400 80 L440 80" stroke="#8ab4ff" stroke-width="3"/>
+            <path d="M330 100 L330 130" stroke="#7dffa8" stroke-width="3"/>
+          </g>
+        </svg>
+      </div>
+      <div class="callout"><b>Tip</b>: proteja <code>main</code> com regras (branch protection) exigindo review + checks verdes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULO 5 -->
+<section class="card" id="mod5">
+  <h2>5) Issues (tarefas) & templates</h2>
+  <p class="lead">Use issues como tickets inteligentes: descrição, critérios de aceite e rótulos.</p>
+  <div class="grid cols-2">
+    <div>
+      <h3>Template de issue (exemplo)</h3>
+      <div class="btn-row"><button class="copy" data-target="c5">copiar</button></div>
+      <pre id="c5"><code>### Descrição
+Explique o problema/feature e o contexto.
+
+### Critérios de Aceite
+- [ ] Dado/Quando/Então ...
+
+### Como testar
+Passo-a-passo, dados de exemplo, prints.
+
+### Referências
+PRs/Issues relacionados, links técnicos.</code></pre>
+    </div>
+    <div>
+      <h3>Vincule issue ↔ PR</h3>
+      <pre><code># na descrição do PR
+Resolve #123
+Fixes #456
+Closes #789</code></pre>
+      <div class="callout">Ao mesclar, o GitHub fecha a issue automaticamente (se vinculado corretamente).</div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULO 6 -->
+<section class="card" id="mod6">
+  <h2>6) Projects (Kanban/Scrum)</h2>
+  <p class="lead">Planeje com quadros integrados às issues/PRs e acompanhe métricas.</p>
+  <div class="grid cols-2">
+    <div>
+      <h3>Quadro básico (To Do → Doing → Done)</h3>
+      <div class="svgbox">
+        <svg viewBox="0 0 680 210" width="100%" role="img">
+          <rect x="10" y="10" width="660" height="190" rx="12" fill="#0a1220" stroke="#1a2a48"/>
+          <g font-family="Inter" font-size="12">
+            <g>
+              <rect x="30" y="40" width="180" height="140" rx="12" fill="#2f200a" stroke="#7a4e11"/>
+              <text x="120" y="58" fill="#ffb454" text-anchor="middle">To Do</text>
+            </g>
+            <g>
+              <rect x="250" y="40" width="180" height="140" rx="12" fill="#0e2b16" stroke="#2ea043"/>
+              <text x="340" y="58" fill="#7dffa8" text-anchor="middle">Doing</text>
+            </g>
+            <g>
+              <rect x="470" y="40" width="180" height="140" rx="12" fill="#0e2340" stroke="#1f6feb"/>
+              <text x="560" y="58" fill="#8ab4ff" text-anchor="middle">Done</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div>
+      <h3>Políticas de fluxo</h3>
+      <ul>
+        <li>WIP (trabalho em progresso) limitado</li>
+        <li>Definição de pronto (Definition of Done)</li>
+        <li>Review obrigatório antes de “Done”</li>
+        <li>Automação de movimentação via Actions/Bots</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULO 7 -->
+<section class="card" id="mod7">
+  <h2>7) GitHub Actions (CI/CD)</h2>
+  <p class="lead">Automatize testes, builds e deploys com workflows em YAML.</p>
+
+  <div class="grid cols-2">
+    <div>
+      <h3>Workflow exemplo (Node)</h3>
+      <div class="btn-row"><button class="copy" data-target="c7">copiar</button></div>
+      <pre id="c7"><code>name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm ci
+      - run: npm test -- --ci</code></pre>
+
+      <h3>Deploy (exemplo simplificado)</h3>
+      <pre><code>jobs:
+  deploy:
+    needs: build-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/deploy.sh # seu script de deploy</code></pre>
+    </div>
+
+    <div>
+      <h3>Diagrama — CI/CD</h3>
+      <div class="svgbox">
+        <svg viewBox="0 0 680 220" width="100%" role="img">
+          <rect x="10" y="10" width="660" height="200" rx="12" fill="#0a1220" stroke="#1a2a48"/>
+          <g font-family="Inter" font-size="12" fill="#cfe3ff">
+            <rect x="40" y="60" width="140" height="40" rx="10" fill="#14233d" stroke="#25406d"/>
+            <text x="110" y="85" text-anchor="middle">Commit/PR</text>
+            <rect x="220" y="60" width="120" height="40" rx="10" fill="#14233d" stroke="#25406d"/>
+            <text x="280" y="85" text-anchor="middle">Build</text>
+            <rect x="380" y="60" width="120" height="40" rx="10" fill="#14233d" stroke="#25406d"/>
+            <text x="440" y="85" text-anchor="middle">Testes</text>
+            <rect x="540" y="60" width="110" height="40" rx="10" fill="#14233d" stroke="#25406d"/>
+            <text x="595" y="85" text-anchor="middle">Deploy</text>
+            <path d="M180 80 L220 80" stroke="#8ab4ff" stroke-width="3"/>
+            <path d="M340 80 L380 80" stroke="#8ab4ff" stroke-width="3"/>
+            <path d="M500 80 L540 80" stroke="#8ab4ff" stroke-width="3"/>
+          </g>
+        </svg>
+      </div>
+      <div class="callout"><b>Segurança</b>: use segredos em <code>Settings → Secrets and variables → Actions</code>.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULO 8 -->
+<section class="card" id="mod8">
+  <h2>8) Segurança & Proteções</h2>
+  <p class="lead">Evite vazamentos; exija revisão e checks. Segurança é cultura.</p>
+  <div class="grid cols-2">
+    <div>
+      <h3>.gitignore & segredos</h3>
+      <div class="btn-row"><button class="copy" data-target="c8">copiar</button></div>
+      <pre id="c8"><code># .gitignore (exemplo básico)
+node_modules/
+.env
+dist/
+**/*.log
+*.pem
+# nunca comitar segredos; use Secrets/Actions</code></pre>
+
+      <h3>Proteção de branch</h3>
+      <ul>
+        <li>Exigir reviews (min. 1)</li>
+        <li>Exigir status checks (CI) verdes</li>
+        <li>Bloquear <i>force push</i></li>
+        <li>Requerer branches atualizadas antes do merge</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Auditoria & qualidade</h3>
+      <ul>
+        <li>Dependabot (atualizações de dependências)</li>
+        <li>Code Scanning/Secret Scanning</li>
+        <li>Actions com permissões mínimas (<code>permissions: read-all</code>)</li>
+        <li>Logs de auditoria (Enterprise)</li>
+      </ul>
+      <div class="callout"><b>Dica</b>: combine PR templates + branch protection + Actions → esteira de qualidade reprodutível.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULO 9 -->
+<section class="card" id="mod9">
+  <h2>9) GitHub Copilot (IA aplicada)</h2>
+  <p class="lead">Acelere com IA, mantendo revisão humana e padrões do time.</p>
+  <div class="grid cols-2">
+    <div>
+      <h3>Fluxo de uso</h3>
+      <ol>
+        <li>Escrever comentário/objetivo claro</li>
+        <li>Deixar o Copilot sugerir o esqueleto</li>
+        <li>Validar/ajustar e testar</li>
+        <li>Comitar com mensagem clara</li>
+      </ol>
+      <div class="btn-row"><button class="copy" data-target="c9">copiar</button></div>
+      <pre id="c9"><code>// Exemplo de prompt (em código):
+// Objetivo: criar validador de CPF
+// Regras: função pura, testes unitários, sem libs externas</code></pre>
+    </div>
+    <div>
+      <h3>Boas práticas</h3>
+      <ul>
+        <li>Contexto suficiente no arquivo/projeto</li>
+        <li>Testes automatizados sempre</li>
+        <li>Revisão de segurança/performance</li>
+        <li>Evitar “colagem cega” de trechos grandes</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULO 10 -->
+<section class="card" id="mod10">
+  <h2>10) Organizações & Governança</h2>
+  <p class="lead">Escalone com papéis, times, ambientes e políticas claras.</p>
+  <div class="grid cols-2">
+    <div>
+      <h3>Papéis comuns</h3>
+      <table>
+        <thead><tr><th>Papel</th><th>Poderes</th></tr></thead>
+        <tbody>
+          <tr><td>Owner</td><td>Tudo (administração global)</td></tr>
+          <tr><td>Admin</td><td>Config de repositórios</td></tr>
+          <tr><td>Maintainer</td><td>Review/merge, releases</td></tr>
+          <tr><td>Developer</td><td>Commits/PRs</td></tr>
+          <tr><td>Viewer</td><td>Leitura</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3>Políticas úteis</h3>
+      <ul>
+        <li>Ambientes (preview/staging/prod) com <i>required reviewers</i> distintos</li>
+        <li>Rotação de revisores (evita gargalos)</li>
+        <li>Templates de PR/Issue padronizados</li>
+        <li>Backups e retenção de logs</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- REFERÊNCIAS -->
+<section class="card" id="refs">
+  <h2>📚 Referências & Leituras Recomendadas</h2>
+  <ul>
+    <li>GitHub Docs — <a href="https://docs.github.com" target="_blank" rel="noopener">docs.github.com</a></li>
+    <li>Pro Git (livro gratuito) — <a href="https://git-scm.com/book" target="_blank" rel="noopener">git-scm.com/book</a></li>
+    <li>Git Tutorials (Atlassian) — <a href="https://www.atlassian.com/git" target="_blank" rel="noopener">atlassian.com/git</a></li>
+    <li>GitHub Actions — <a href="https://docs.github.com/actions" target="_blank" rel="noopener">docs.github.com/actions</a></li>
+  </ul>
+  <div class="mini">dica: para exportar em PDF, use <kbd>Ctrl/Cmd + P</kbd> no navegador e escolha “Salvar como PDF”.</div>
+</section>
+
+<footer>
+  © 2025 — Anderson Lima | Guia Visual Didático do GitHub Pro
+  <div><a href="#top">voltar ao topo ↑</a></div>
+</footer>
+
+</div>
+
+<script>
+  // botões "copiar"
+  document.querySelectorAll('button.copy').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const id = btn.getAttribute('data-target');
+      const el = document.getElementById(id);
+      try{
+        await navigator.clipboard.writeText(el.innerText);
+        const old = btn.textContent;
+        btn.textContent = 'copiado!';
+        setTimeout(()=>btn.textContent = old, 1200);
+      }catch(e){
+        btn.textContent = 'falhou :(';
+        setTimeout(()=>btn.textContent = 'copiar', 1200);
+      }
+    });
+  });
+</script>
+</body>
+</html>
