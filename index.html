@@ -1,405 +1,508 @@
-<!DOCTYPE html>
-
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A Liderança que Transforma Água em Vinho - O Código da Excelência Silenciosa">
-    <meta name="author" content="Leadership Excellence">
-    <title>A Liderança que Transforma Água em Vinho</title>
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Parábola Interativa — Cobcred | Transição: Discador → WhatsApp</title>
+<meta name="description" content="Uma parábola moderna para líderes da Cobcred, em interface estilo WhatsApp, simbolizando a transição do antigo para o moderno." />
+<style>
+  :root{
+    --bg: #0b141a;
+    --panel: #111b21;
+    --bubble-me: #005c4b;
+    --bubble-them: #202c33;
+    --text: #e9edef;
+    --muted: #91a3ad;
+    --accent: #25d366;
+    --accent-2: #34b7f1;
+    --old: #5a5a5a;
+    --stroke: #2a3b43;
+    --shadow: 0 10px 30px rgba(0,0,0,.35);
+    --radius: 16px;
+    --radius-lg: 22px;
+    --speed: .4s;
+  }
+  .light{
+    --bg: #f3f5f7;
+    --panel: #ffffff;
+    --bubble-me: #d3f4e4;
+    --bubble-them: #eef1f4;
+    --text: #0f1115;
+    --muted: #5b6b76;
+    --accent: #0bbf62;
+    --accent-2: #1991d1;
+    --old: #8b8b8b;
+    --stroke: #e7edf1;
+    --shadow: 0 10px 30px rgba(12,18,28,.08);
+  }
 
-```
-    body {
-        font-family: 'Roboto', sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: #202124;
-        line-height: 1.6;
-        padding: 20px;
-    }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; background:linear-gradient(180deg, var(--bg), #0a1014);
+    color:var(--text); font: 16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    display:flex; align-items:center; justify-content:center; padding:24px;
+  }
 
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        background: white;
-        border-radius: 16px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-        overflow: hidden;
-    }
+  .app{
+    width:min(1100px, 100%);
+    border:1px solid var(--stroke);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)) , var(--panel);
+    overflow:hidden; position:relative;
+    isolation:isolate;
+  }
 
-    .hero {
-        background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
-        color: white;
-        padding: 60px 40px;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-    }
+  /* Header */
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 18px; border-bottom:1px solid var(--stroke);
+    background:linear-gradient(90deg, rgba(37,211,102,.14), rgba(52,183,241,.12));
+    gap:12px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:12px; font-weight:700;
+  }
+  .brand .logo{
+    width:36px; height:36px; border-radius:11px; background:
+      radial-gradient(75% 75% at 70% 30%, rgba(255,255,255,.5), transparent),
+      conic-gradient(from 210deg, var(--accent), var(--accent-2));
+    border:1px solid rgba(255,255,255,.25);
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,.1);
+  }
+  .brand small{
+    display:block; font-weight:600; color:var(--muted); letter-spacing:.3px;
+  }
 
-    .hero::before {
-        content: '⚜️';
-        font-size: 120px;
-        position: absolute;
-        top: -20px;
-        right: 40px;
-        opacity: 0.1;
-    }
+  .actions{display:flex; gap:10px; align-items:center}
+  .btn{
+    appearance:none; border:1px solid var(--stroke); background:transparent; color:var(--text);
+    padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:600;
+    transition: transform var(--speed), background var(--speed), border-color var(--speed);
+  }
+  .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.25) }
+  .btn.primary{ background: linear-gradient(90deg, var(--accent), var(--accent-2)); color:#051014; border-color:transparent }
+  .btn.ghost{ background: rgba(255,255,255,.03) }
+  .toggle{display:flex; align-items:center; gap:8px; color:var(--muted); font-weight:600}
 
-    .hero h1 {
-        font-family: 'Google Sans', sans-serif;
-        font-size: 2.5em;
-        font-weight: 700;
-        margin-bottom: 15px;
-        line-height: 1.2;
-    }
+  /* Hero ribbon */
+  .ribbon{
+    position:relative; padding:18px; border-bottom:1px dashed var(--stroke);
+    display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap;
+  }
+  .caps{ text-transform:uppercase; letter-spacing:.25em; color:var(--muted); font-weight:800; font-size:12px }
+  .headline{ font-size:clamp(18px, 2.2vw, 24px); font-weight:800 }
+  .tag{
+    display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--stroke);
+    color:var(--muted); background: rgba(255,255,255,.02);
+  }
+  .tag .dot{ width:10px; height:10px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 6px rgba(37,211,102,.15) }
 
-    .hero .subtitle {
-        font-size: 1.3em;
-        font-weight: 300;
-        opacity: 0.95;
-    }
+  /* Timeline switcher */
+  .timeline{
+    position:relative; height:46px; display:flex; align-items:center; justify-content:center; gap:10px;
+    border-bottom:1px solid var(--stroke); background: linear-gradient(180deg, rgba(255,255,255,.02), transparent);
+  }
+  .pill{
+    display:inline-grid; grid-auto-flow:column; gap:2px; padding:4px; background:rgba(255,255,255,.04); border:1px solid var(--stroke);
+    border-radius:999px; position:relative;
+  }
+  .pill button{
+    border:0; background:transparent; color:var(--muted); font-weight:800; padding:8px 14px; border-radius:999px; cursor:pointer
+  }
+  .pill .thumb{
+    position:absolute; inset:4px calc(50% + 2px) 4px 4px; background:rgba(255,255,255,.06); border-radius:999px;
+    transition: inset var(--speed) ease;
+  }
+  .pill[data-side="old"] .thumb{ inset:4px  calc(50% + 2px) 4px 4px }
+  .pill[data-side="new"] .thumb{ inset:4px 4px 4px calc(50% + 2px) }
+  .pill[data-side="old"] button[data-k="old"], .pill[data-side="new"] button[data-k="new"]{ color:var(--text) }
 
-    .content {
-        padding: 40px;
-    }
+  /* Stage with slider */
+  .stage{
+    position:relative; height:min(70vh, 680px); background:
+      linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)),
+      radial-gradient(1000px 1000px at 120% -20%, rgba(37,211,102,.08), transparent),
+      radial-gradient(1000px 1000px at -20% 120%, rgba(52,183,241,.08), transparent);
+    overflow:hidden;
+  }
+  .half{
+    position:absolute; inset:0; padding:18px; display:grid; grid-template-rows:auto 1fr; gap:12px;
+  }
+  .half.old{ background:
+    linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.0)),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 2px),
+    linear-gradient(180deg, #171717, #0f0f0f); color:#eaeaea; }
+  .half.new{ background:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.0)),
+    radial-gradient(600px 600px at 100% 0%, rgba(37,211,102,.12), transparent),
+    linear-gradient(180deg, #0b141a, #091015); }
 
-    .section {
-        margin-bottom: 50px;
-        animation: fadeInUp 0.6s ease-out;
-    }
+  .titlebar{
+    display:flex; align-items:center; justify-content:space-between; padding:10px 14px;
+    border:1px solid var(--stroke); border-radius:14px; background: rgba(255,255,255,.03);
+  }
+  .titlebar .t{display:flex; align-items:center; gap:10px}
+  .badge{ font-size:12px; color:var(--muted) }
+  .chip{ padding:6px 10px; border-radius:999px; border:1px solid var(--stroke); color:var(--muted) }
 
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+  /* Chat areas */
+  .chat{
+    position:relative; overflow:auto; border:1px solid var(--stroke); border-radius:18px; padding:16px;
+    background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+  }
+  .row{ display:flex; gap:10px; margin:10px 0; align-items:flex-end; }
+  .row.me{ justify-content:flex-end }
+  .bubble{
+    max-width:min(520px, 80%); padding:10px 12px; border-radius:14px; border:1px solid var(--stroke);
+    box-shadow: 0 2px 0 rgba(0,0,0,.05);
+    animation: pop .35s ease both;
+  }
+  .row.them .bubble{ background: var(--bubble-them); }
+  .row.me   .bubble{ background: var(--bubble-me); color: #e7fff5 }
+  .meta{ display:flex; gap:8px; align-items:center; color:var(--muted); font-size:12px; margin-top:6px }
+  .avatar{
+    width:34px; height:34px; border-radius:50%; flex:0 0 34px;
+    background: linear-gradient(180deg,#2d3a42,#121a1f);
+    border:1px solid rgba(255,255,255,.12); display:grid; place-items:center; color:#c8d7df; font-weight:800
+  }
+  .avatar.green{ background: linear-gradient(180deg,#0b3e2f,#062821); color:#9de7c6 }
+  .avatar.blue{ background: linear-gradient(180deg,#17324a,#0a1f31); color:#a7d8ff }
+  .divider{
+    text-align:center; color:var(--muted); font-size:12px; margin:16px 0; position:relative;
+  }
+  .divider::before, .divider::after{
+    content:""; position:absolute; top:50%; width:40%; height:1px; background:var(--stroke)
+  }
+  .divider::before{ left:0 } .divider::after{ right:0 }
 
-    .card {
-        background: #f8f9fa;
-        border-radius: 12px;
-        padding: 30px;
-        margin-bottom: 25px;
-        border-left: 5px solid #1a73e8;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+  @keyframes pop{
+    from{ transform: translateY(6px) scale(.98); opacity:0 }
+    to  { transform: translateY(0)  scale(1);   opacity:1 }
+  }
 
-    .card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-    }
+  /* Slider handle for reveal effect */
+  .mask{
+    position:absolute; inset:0; pointer-events:none; overflow:hidden; border-left:1px dashed rgba(255,255,255,.15)
+  }
+  .mask .newContent{ position:absolute; inset:0 }
+  .slider{
+    position:absolute; top:0; bottom:0; left:50%; width:3px; background: linear-gradient(180deg, var(--accent), var(--accent-2));
+    box-shadow: 0 0 0 4px rgba(37,211,102,.15);
+    cursor:ew-resize; border-radius:2px;
+  }
+  .grab{ position:absolute; top:50%; transform:translate(-50%,-50%);
+    display:grid; place-items:center; width:44px; height:44px; border-radius:50%;
+    background: #0a1814; color:#dff8ec; border:1px solid var(--stroke); box-shadow: var(--shadow) }
+  .grab:after{ content:"↔"; font-weight:800; }
 
-    .card.red { border-left-color: #ea4335; }
-    .card.yellow { border-left-color: #fbbc04; }
-    .card.green { border-left-color: #34a853; }
-    .card.purple { border-left-color: #9334e6; }
-    .card.orange { border-left-color: #ff6d00; }
+  /* Footer CTA */
+  .cta{
+    border-top:1px solid var(--stroke); display:flex; gap:12px; justify-content:space-between; align-items:center;
+    padding:14px 18px; background: linear-gradient(180deg, rgba(255,255,255,.04), transparent);
+  }
+  .cta .note{ color:var(--muted) }
 
-    .card h2 {
-        font-family: 'Google Sans', sans-serif;
-        color: #1a73e8;
-        font-size: 1.8em;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .card.red h2 { color: #ea4335; }
-    .card.yellow h2 { color: #ea8600; }
-    .card.green h2 { color: #34a853; }
-    .card.purple h2 { color: #9334e6; }
-    .card.orange h2 { color: #ff6d00; }
-
-    .number-badge {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 45px;
-        height: 45px;
-        background: linear-gradient(135deg, #1a73e8, #4285f4);
-        color: white;
-        border-radius: 50%;
-        font-weight: 700;
-        font-size: 1.3em;
-        flex-shrink: 0;
-    }
-
-    .card.red .number-badge { background: linear-gradient(135deg, #ea4335, #f55f4e); }
-    .card.yellow .number-badge { background: linear-gradient(135deg, #fbbc04, #fcd34d); }
-    .card.green .number-badge { background: linear-gradient(135deg, #34a853, #5bb974); }
-    .card.purple .number-badge { background: linear-gradient(135deg, #9334e6, #a855f7); }
-    .card.orange .number-badge { background: linear-gradient(135deg, #ff6d00, #ff8a3d); }
-
-    .card p {
-        font-size: 1.05em;
-        color: #5f6368;
-        margin-bottom: 15px;
-        line-height: 1.8;
-    }
-
-    .highlight {
-        background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
-        padding: 20px 25px;
-        border-radius: 8px;
-        font-weight: 500;
-        color: #1a1a1a;
-        margin: 20px 0;
-        font-size: 1.1em;
-        border-left: 4px solid #1a73e8;
-    }
-
-    .table-container {
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        margin: 30px 0;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    thead {
-        background: linear-gradient(135deg, #1a73e8, #4285f4);
-        color: white;
-    }
-
-    th {
-        font-family: 'Google Sans', sans-serif;
-        padding: 20px;
-        text-align: left;
-        font-weight: 600;
-        font-size: 1.1em;
-    }
-
-    td {
-        padding: 20px;
-        border-bottom: 1px solid #e8eaed;
-    }
-
-    tr:hover {
-        background: #f8f9fa;
-    }
-
-    tbody tr:last-child td {
-        border-bottom: none;
-    }
-
-    .principle {
-        font-weight: 600;
-        color: #1a73e8;
-        font-size: 1.05em;
-    }
-
-    .practice {
-        color: #5f6368;
-        font-size: 1em;
-    }
-
-    .conclusion {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 50px 40px;
-        border-radius: 12px;
-        margin-top: 40px;
-        text-align: center;
-    }
-
-    .conclusion h2 {
-        font-family: 'Google Sans', sans-serif;
-        font-size: 2.2em;
-        margin-bottom: 25px;
-    }
-
-    .conclusion p {
-        font-size: 1.2em;
-        line-height: 1.9;
-        margin-bottom: 15px;
-        font-weight: 300;
-    }
-
-    .conclusion .final-quote {
-        font-size: 1.5em;
-        font-weight: 500;
-        margin-top: 30px;
-        padding: 20px;
-        background: rgba(255,255,255,0.15);
-        border-radius: 8px;
-        backdrop-filter: blur(10px);
-    }
-
-    .divider {
-        height: 2px;
-        background: linear-gradient(90deg, transparent, #e8eaed, transparent);
-        margin: 40px 0;
-    }
-
-    @media (max-width: 768px) {
-        .hero {
-            padding: 40px 20px;
-        }
-
-        .hero h1 {
-            font-size: 1.8em;
-        }
-
-        .content {
-            padding: 20px;
-        }
-
-        .card {
-            padding: 20px;
-        }
-
-        table {
-            font-size: 0.9em;
-        }
-
-        th, td {
-            padding: 12px;
-        }
-    }
+  /* Responsive */
+  @media (max-width: 900px){
+    .stage{ height:min(70vh, 840px) }
+  }
+  @media (max-width: 720px){
+    .stage{ height: 75vh }
+    .row .bubble{ max-width: 100% }
+  }
 </style>
-```
-
 </head>
-<body>
-    <div class="container">
-        <div class="hero">
-            <h1>⚜️ A Liderança que Transforma Água em Vinho</h1>
-            <p class="subtitle">O Código da Excelência Silenciosa</p>
+<body class="light">
+  <div class="app" role="application" aria-label="Parábola interativa em UI de chat">
+    <header class="topbar" aria-label="Barra de topo">
+      <div class="brand" aria-label="Identidade">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          COB CRED <small>Liderança & Transformação</small>
         </div>
-
-```
-    <div class="content">
-        <div class="section">
-            <div class="card">
-                <h2><span class="number-badge">1</span>A grandeza começa no comum</h2>
-                <p>Os líderes verdadeiramente transformadores não esperam momentos grandiosos para agir. Eles criam grandeza no cotidiano, nas interações simples, nas reuniões discretas, nos detalhes.</p>
-                <div class="highlight">
-                    Liderar é ver potência onde outros veem rotina. É tratar o ordinário como palco do extraordinário.
-                </div>
-                <p>Empresas que constroem legados não dependem de grandes eventos — dependem de líderes que enxergam cada processo, cada pessoa e cada cliente como um universo de possibilidades.</p>
-            </div>
-
-            <div class="card red">
-                <h2><span class="number-badge">2</span>Crises são convites para protagonismo</h2>
-                <p>Em toda organização há momentos em que o "vinho acaba": falta de motivação, queda de desempenho, perda de propósito ou de clientes. Enquanto a maioria se desespera, líderes de excelência identificam o vazio e agem com serenidade.</p>
-                <div class="highlight">
-                    Eles não reclamam da escassez — eles a convertem em oportunidade.
-                </div>
-                <p>A diferença entre o gestor e o líder é que o primeiro reage, o segundo antecipa. Ele sente o desequilíbrio do sistema e o reequilibra com visão, comunicação e presença.</p>
-            </div>
-
-            <div class="card yellow">
-                <h2><span class="number-badge">3</span>A disciplina do tempo</h2>
-                <p>O líder maduro não é movido por ansiedade ou urgência — é guiado por propósito e timing. Sabe que agir antes da hora pode ser tão desastroso quanto agir tarde demais.</p>
-                <div class="highlight">
-                    O poder não está apenas em saber o que fazer, mas quando fazer.
-                </div>
-                <p>Ele domina o tempo interno e o tempo da equipe: fala quando é necessário, cala quando é estratégico, acelera quando há sinergia e desacelera quando há confusão.</p>
-            </div>
-
-            <div class="card green">
-                <h2><span class="number-badge">4</span>A força da execução silenciosa</h2>
-                <p>O maior segredo da liderança está no bastidor: a execução impecável de instruções simples. O que separa equipes medianas de times lendários não é genialidade — é disciplina cotidiana.</p>
-                <div class="highlight">
-                    A excelência não é um ato heroico. É o resultado de uma fidelidade absurda ao básico bem feito.
-                </div>
-                <p>Líderes que mudam o jogo não delegam apenas tarefas, delegam sentido. Eles inspiram outros a obedecer não por hierarquia, mas por confiança no propósito.</p>
-            </div>
-
-            <div class="card purple">
-                <h2><span class="number-badge">5</span>O poder de surpreender</h2>
-                <p>A verdadeira transformação acontece quando o resultado final é melhor do que o esperado. Enquanto muitos buscam "cumprir metas", o líder de excelência busca elevar o padrão.</p>
-                <div class="highlight">
-                    Ele não entrega apenas o suficiente — entrega o inédito.
-                </div>
-                <p>Surpreender é a arte de combinar domínio técnico, sensibilidade humana e visão estética. Quando o líder entrega algo tão bom que o sistema se silencia por admiração, ele atinge o território da liderança que inspira, não apenas gerencia.</p>
-            </div>
-
-            <div class="card orange">
-                <h2><span class="number-badge">6</span>Legado: inspirar confiança pelo exemplo</h2>
-                <p>A confiança é o oxigênio das organizações. Ela não nasce de discursos, mas de resultados consistentes e presença coerente.</p>
-                <div class="highlight">
-                    O líder de excelência não pede confiança — ele a conquista. Ele transforma performance em fé organizacional.
-                </div>
-                <p>Cada entrega bem feita, cada decisão justa e cada ato de coragem silenciosa solidifica uma cultura em que as pessoas acreditam — não no líder apenas, mas no que se torna possível ao seu redor.</p>
-            </div>
+      </div>
+      <div class="actions">
+        <div class="toggle">
+          <input id="theme" type="checkbox" aria-label="Alternar tema claro/escuro" />
+          <label for="theme">Tema escuro</label>
         </div>
+        <button class="btn ghost" id="replay" aria-label="Reiniciar conversa">Reiniciar</button>
+        <button class="btn primary" id="callToAction" aria-label="CTA">Levar para meu time</button>
+      </div>
+    </header>
 
-        <div class="divider"></div>
+    <section class="ribbon" aria-label="Chamada principal">
+      <div>
+        <div class="caps">Transição estratégica</div>
+        <div class="headline">Discador → WhatsApp: liderança que mantém o sinal mesmo na mudança</div>
+      </div>
+      <div class="tag" aria-label="Status">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Transmissão ativa</span>
+      </div>
+    </section>
 
-        <div class="section">
-            <h2 style="font-family: 'Google Sans', sans-serif; color: #1a73e8; font-size: 2em; margin-bottom: 30px; text-align: center;">
-                <span class="number-badge" style="margin-right: 15px;">7</span>
-                Síntese: o código da liderança transformadora
-            </h2>
-            
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Princípio</th>
-                            <th>Tradução prática</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="principle">1. O comum é palco do extraordinário.</td>
-                            <td class="practice">Dê propósito ao cotidiano.</td>
-                        </tr>
-                        <tr>
-                            <td class="principle">2. Crise é oportunidade disfarçada.</td>
-                            <td class="practice">Aja com calma e protagonismo.</td>
-                        </tr>
-                        <tr>
-                            <td class="principle">3. Tempo é inteligência estratégica.</td>
-                            <td class="practice">Espere o momento certo, não o mais fácil.</td>
-                        </tr>
-                        <tr>
-                            <td class="principle">4. Execução é espiritualidade em ação.</td>
-                            <td class="practice">Faça o simples com excelência.</td>
-                        </tr>
-                        <tr>
-                            <td class="principle">5. Surpreenda o sistema.</td>
-                            <td class="practice">Supere expectativas em silêncio.</td>
-                        </tr>
-                        <tr>
-                            <td class="principle">6. Inspire pela entrega.</td>
-                            <td class="practice">Sua coerência vale mais que sua fala.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <nav class="timeline" aria-label="Seletor de época">
+      <div class="pill" id="eraPill" data-side="new" role="tablist" aria-label="Modo de visualização">
+        <div class="thumb" aria-hidden="true"></div>
+        <button role="tab" aria-selected="false" data-k="old">Antigo (Discador)</button>
+        <button role="tab" aria-selected="true"  data-k="new">Moderno (WhatsApp)</button>
+      </div>
+    </nav>
+
+    <main class="stage" aria-live="polite">
+      <!-- Lado antigo -->
+      <section class="half old" aria-label="Ambiente antigo - Discador">
+        <div class="titlebar" aria-label="Título do ambiente antigo">
+          <div class="t"><strong>Operação</strong> <span class="badge">Discador</span></div>
+          <div class="chip">Fila • Pausas • KPIs • Sinais fracos</div>
         </div>
+        <div class="chat" id="chat-old" aria-label="Chat de exemplo - modelo antigo">
+          <div class="divider">Início do projeto</div>
 
-        <div class="conclusion">
-            <h2>A liderança como alquimia</h2>
-            <p>Liderar é transformar o "comum em ouro", o "processo em propósito", o "esforço em arte". É fazer com que cada ação contenha elegância, precisão e significado.</p>
-            <p>O verdadeiro líder não busca reconhecimento — ele busca revelação: revelar o potencial oculto nas pessoas, nos projetos e nas circunstâncias.</p>
-            <div class="final-quote">
-                E quando isso acontece, não há barulho — há impacto.<br>
-                <strong>A excelência fala em silêncio.</strong>
+          <div class="row them">
+            <div class="avatar">H</div>
+            <div class="bubble">
+              Cronograma aprovado. Mas os custos do canal atual estão subindo e o tempo de resposta continua alto.
+              <div class="meta">Helena • 08:07</div>
             </div>
-        </div>
-    </div>
-</div>
-```
+          </div>
 
+          <div class="row them">
+            <div class="avatar blue">R</div>
+            <div class="bubble">
+              Time, foco! Se ajustarmos as filas, a gente entrega. Só não podemos desanimar nas primeiras quedas de sinal.
+              <div class="meta">Rogério • 08:09</div>
+            </div>
+          </div>
+
+          <div class="row me">
+            <div class="bubble">
+              Ritual de 10 min diário: o que avançou ontem, bloqueios de hoje e quem precisa de ajuda. Consistência é o nosso sinal.
+              <div class="meta">Clara • 08:10</div>
+            </div>
+          </div>
+
+          <div class="row them">
+            <div class="avatar">H</div>
+            <div class="bubble">
+              Ainda tenho dúvidas se essa mudança vai de fato reduzir atrito. Estamos cansando…
+              <div class="meta">Helena • 08:28</div>
+            </div>
+          </div>
+
+          <div class="row me">
+            <div class="bubble">
+              Respira: a transição é um caminho, não um salto. Vamos manter o ritmo. A transmissão ainda é possível.
+              <div class="meta">Clara • 08:30</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lado novo, revelado por máscara -->
+      <div class="mask" id="mask" style="left:50%">
+        <section class="half new newContent" aria-label="Ambiente moderno - WhatsApp">
+          <div class="titlebar">
+            <div class="t"><strong>Operação</strong> <span class="badge">WhatsApp</span></div>
+            <div class="chip">Conversas • Rapidez • Humanidade • Conversão</div>
+          </div>
+          <div class="chat" id="chat-new" aria-label="Chat estilo WhatsApp">
+            <div class="divider">Algumas semanas depois</div>
+
+            <div class="row me">
+              <div class="bubble">
+                Stand-up de 10 min mantido. O que funcionou: respostas mais rápidas, menos retrabalho. Bloqueios: rotas de API e compliance — endereçados.
+                <div class="meta">Clara • 09:01</div>
+              </div>
+            </div>
+
+            <div class="row them">
+              <div class="avatar">H</div>
+              <div class="bubble">
+                Estou vendo. As melhores soluções vieram dessas conversas curtas, não dos relatórios longos.
+                <div class="meta">Helena • 09:02</div>
+              </div>
+            </div>
+
+            <div class="row them">
+              <div class="avatar blue">R</div>
+              <div class="bubble">
+                Motivação aqui virou constância. O time aprendeu a reacender a própria chama.
+                <div class="meta">Rogério • 09:03</div>
+              </div>
+            </div>
+
+            <div class="divider">Conclusão</div>
+
+            <div class="row me">
+              <div class="bubble">
+                A transição foi concluída — <strong>o Discador deu lugar ao WhatsApp, agora o novo meio de comunicação com os clientes</strong>.
+                <div class="meta">Clara • 17:40</div>
+              </div>
+            </div>
+
+            <div class="row them">
+              <div class="avatar green">CEO</div>
+              <div class="bubble">
+                O que fez a diferença?
+                <div class="meta">Diretoria • 17:41</div>
+              </div>
+            </div>
+
+            <div class="row me">
+              <div class="bubble">
+                Não foi só tecnologia. Foi persistência. Todos nos cansamos, mas nunca deixamos de sustentar o propósito — juntos.
+                <div class="meta">Clara • 17:42</div>
+              </div>
+            </div>
+
+            <div class="divider">Moral para líderes</div>
+
+            <div class="row them">
+              <div class="avatar">H</div>
+              <div class="bubble">
+                1) Persistência é o motor das transições. 2) A integração mais difícil sempre é entre pessoas. 3) Pequenos rituais constroem grandes viradas.
+                <div class="meta">Helena • 17:45</div>
+              </div>
+            </div>
+
+            <div class="row them">
+              <div class="avatar blue">R</div>
+              <div class="bubble">
+                O líder é a transmissão entre propósito e resultado. Quando o sinal oscila, constância é cobertura.
+                <div class="meta">Rogério • 17:46</div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </div>
+
+      <div class="slider" id="slider" style="left:50%">
+        <div class="grab" aria-hidden="true"></div>
+      </div>
+    </main>
+
+    <footer class="cta" aria-label="Rodapé e chamadas">
+      <div class="note">Dica: arraste o divisor para visualizar a transição do “Antigo” para o “Moderno”.</div>
+      <div>
+        <button class="btn ghost" id="copyLink" aria-label="Exportar trecho">Copiar moral</button>
+        <button class="btn primary" id="present" aria-label="Apresentar em tela cheia">Apresentar</button>
+      </div>
+    </footer>
+  </div>
+
+<script>
+  // Tema claro/escuro
+  const themeToggle = document.getElementById('theme');
+  const body = document.body;
+  themeToggle.addEventListener('change', () => {
+    body.classList.toggle('light', !themeToggle.checked);
+  });
+
+  // Alternador de era (pill)
+  const pill = document.getElementById('eraPill');
+  pill.addEventListener('click', (e)=>{
+    const b = e.target.closest('button'); if(!b) return;
+    const side = b.dataset.k;
+    pill.dataset.side = side;
+    setSplit(side === 'old' ? 20 : 80);
+  });
+
+  // Slider (drag)
+  const slider = document.getElementById('slider');
+  const mask = document.getElementById('mask');
+  let dragging = false;
+
+  const clamp = (n,min,max)=>Math.max(min,Math.min(max,n));
+  function setSplit(percent){
+    const px = (percent/100)*document.querySelector('.stage').clientWidth;
+    slider.style.left = px + 'px';
+    mask.style.left = px + 'px';
+    pill.dataset.side = (percent < 50) ? 'old' : 'new';
+  }
+
+  slider.addEventListener('mousedown', ()=> dragging = true);
+  window.addEventListener('mouseup', ()=> dragging = false);
+  window.addEventListener('mousemove', (e)=>{
+    if(!dragging) return;
+    const stage = document.querySelector('.stage');
+    const rect = stage.getBoundingClientRect();
+    const x = clamp(e.clientX - rect.left, 120, rect.width-120);
+    slider.style.left = x + 'px';
+    mask.style.left = x + 'px';
+    pill.dataset.side = (x < rect.width/2) ? 'old' : 'new';
+  });
+
+  // Touch
+  slider.addEventListener('touchstart', ()=> dragging = true, {passive:true});
+  window.addEventListener('touchend', ()=> dragging = false, {passive:true});
+  window.addEventListener('touchmove', (e)=>{
+    if(!dragging) return;
+    const t = e.touches[0];
+    const stage = document.querySelector('.stage');
+    const rect = stage.getBoundingClientRect();
+    const x = clamp(t.clientX - rect.left, 100, rect.width-100);
+    slider.style.left = x + 'px';
+    mask.style.left = x + 'px';
+    pill.dataset.side = (x < rect.width/2) ? 'old' : 'new';
+  }, {passive:true});
+
+  // Responsivo: iniciar no “moderno” em telas largas
+  window.addEventListener('load', ()=>{
+    setSplit(70);
+  });
+  window.addEventListener('resize', ()=>{
+    const side = pill.dataset.side;
+    setSplit(side === 'new' ? 70 : 30);
+  });
+
+  // Replay "animações" simples: recoloca as mensagens com classe pop
+  document.getElementById('replay').addEventListener('click', ()=>{
+    document.querySelectorAll('.bubble').forEach(el=>{
+      el.style.animation = 'none';
+      el.offsetHeight; // reflow
+      el.style.animation = '';
+    });
+  });
+
+  // CTA: modo apresentação (fullscreen)
+  document.getElementById('present').addEventListener('click', async ()=>{
+    const el = document.documentElement;
+    if (document.fullscreenElement) await document.exitFullscreen();
+    else await el.requestFullscreen();
+  });
+
+  // Copiar moral para compartilhar com times
+  const moral = `Moral para líderes:
+1) Persistência é o motor das transições.
+2) A integração mais difícil é entre pessoas.
+3) Pequenos rituais constroem grandes viradas.
+4) O líder é a transmissão entre propósito e resultado.
+Conclusão: o Discador deu lugar ao WhatsApp, agora o novo meio de comunicação com os clientes.`;
+  document.getElementById('copyLink').addEventListener('click', async ()=>{
+    try{
+      await navigator.clipboard.writeText(moral);
+      const btn = document.getElementById('copyLink');
+      const txt = btn.textContent;
+      btn.textContent = 'Copiado ✔';
+      setTimeout(()=> btn.textContent = txt, 1500);
+    }catch(e){}
+  });
+
+  // “Levar para meu time”: gera um arquivo .txt com a moral (fallback offline)
+  document.getElementById('callToAction').addEventListener('click', ()=>{
+    const blob = new Blob([moral], {type:'text/plain;charset=utf-8'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'moral-lideranca-cobcred.txt';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  });
+</script>
 </body>
 </html>
